@@ -24,7 +24,6 @@ export class Layout extends React.Component<object, { page: string }> {
   }
 
   handleClick(page: string) {
-    console.log(page);
     this.setState({ page: page });
   }
   render() {
