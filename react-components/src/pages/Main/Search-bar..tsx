@@ -17,7 +17,6 @@ export class SearchBar extends React.Component<object, { value: string }> {
   }
 
   componentWillUnmount() {
-    console.log('value   ' + this.state.value);
     localStorage.setItem('value', this.state.value);
   }
 
