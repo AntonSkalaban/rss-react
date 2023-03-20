@@ -7,7 +7,7 @@ import { About } from './pages/About/About';
 import { NotFound } from './pages/NotFound/NotFound';
 import { Layout } from './components/Layout';
 
-class App extends React.Component {
+export class App extends React.Component {
   render() {
     return (
       <>
