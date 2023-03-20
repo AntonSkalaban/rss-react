@@ -1,5 +1,5 @@
 import React from 'react';
-import { SearchBar } from './Search-bar.';
+import { SearchBar } from './Search-bar';
 import { CardsContainer } from './Cards-сontainer';
 export class Main extends React.Component {
   render() {
