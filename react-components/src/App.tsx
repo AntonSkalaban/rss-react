@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
 import { Main } from './pages/Main/Main';
-import { About } from './pages/About/About';
+import { AboutUs } from './pages/AboutUs/AboutUs';
 import { NotFound } from './pages/NotFound/NotFound';
 import { Layout } from './components/Layout';
 
@@ -14,7 +14,7 @@ export class App extends React.Component {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Main />} />
-            <Route path="about" element={<About />} />
+            <Route path="about" element={<AboutUs />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

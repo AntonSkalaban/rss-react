@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Pages } from './Layout';
 import './style.css';
 
 interface INavigation {
@@ -18,10 +19,14 @@ export class Navigation extends React.Component<INavigation, object> {
   render() {
     return (
       <nav className="nav">
-        <NavLink to="/" style={this.setActive} onClick={() => this.props.onClick('Main')}>
+        <NavLink to="/" style={this.setActive} onClick={() => this.props.onClick(Pages.Main)}>
           Main
         </NavLink>
-        <NavLink to="/about" style={this.setActive} onClick={() => this.props.onClick('About Us')}>
+        <NavLink
+          to="/about"
+          style={this.setActive}
+          onClick={() => this.props.onClick(Pages.AboutUs)}
+        >
           About
         </NavLink>
       </nav>

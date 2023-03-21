@@ -1,7 +1,7 @@
 import React from 'react';
 import { data } from '../../data';
 import { Card } from './Card';
-import './cards-container.css';
+import './CardsContainer.css';
 
 export class CardsContainer extends React.Component<object, object> {
   render() {

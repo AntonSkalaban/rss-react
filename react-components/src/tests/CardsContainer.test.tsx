@@ -1,8 +1,8 @@
 import React from 'react';
 import { describe, expect, test } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { Card } from './Card';
-import { CardsContainer } from './Cards-сontainer';
+import { Card } from '../pages/Main/Card';
+import { CardsContainer } from '../pages/Main/CardsContainer';
 
 describe('Accordion test', () => {
   test('Should include card', () => {
