@@ -20,14 +20,17 @@ export class Navigation extends React.Component<INavigation, object> {
     return (
       <nav className="nav">
         <NavLink to="/" style={this.setActive} onClick={() => this.props.onClick(Pages.Main)}>
-          Main
+          {Pages.Main}
         </NavLink>
         <NavLink
           to="/about"
           style={this.setActive}
           onClick={() => this.props.onClick(Pages.AboutUs)}
         >
-          About
+          {Pages.AboutUs}
+        </NavLink>
+        <NavLink to="/forms" style={this.setActive} onClick={() => this.props.onClick(Pages.Forms)}>
+          {Pages.Forms}
         </NavLink>
       </nav>
     );

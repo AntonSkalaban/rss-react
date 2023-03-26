@@ -5,6 +5,7 @@ import { Navigation } from './Navigation';
 export enum Pages {
   Main = 'Main',
   AboutUs = 'About Us',
+  Forms = 'Forms',
   Error = 'Error',
 }
 
@@ -14,6 +15,8 @@ const getPage = () => {
       return Pages.Main;
     case '/about':
       return Pages.AboutUs;
+    case '/forms':
+      return Pages.Forms;
     default:
       return Pages.Error;
   }
