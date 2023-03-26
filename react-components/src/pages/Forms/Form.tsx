@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormState } from './types';
+import { FormState, FormProps, ICard, CardBenefits } from './types';
 import { TextInputRef } from './FormComponents/TextInput';
 import { DateRef } from './FormComponents/DateInput';
 import { SelectRef } from './FormComponents/Select';
@@ -15,7 +15,7 @@ const checkNameValid = (value: string | undefined) => {
   return regName.test(value);
 };
 
-export class Form extends React.Component<object, FormState> {
+export class Form extends React.Component<FormProps, FormState> {
   nameRef = React.createRef<HTMLInputElement>();
   dateRef = React.createRef<HTMLInputElement>();
   countryRef = React.createRef<HTMLSelectElement>();
@@ -27,7 +27,7 @@ export class Form extends React.Component<object, FormState> {
   imgRef = React.createRef<HTMLInputElement>();
   notificationsRef = [React.createRef<HTMLInputElement>(), React.createRef<HTMLInputElement>()];
   dataRef = React.createRef<HTMLInputElement>();
-  constructor(props: object) {
+  constructor(props: FormProps) {
     super(props);
     this.state = {
       benefitsCheckboxes: [
@@ -74,15 +74,23 @@ export class Form extends React.Component<object, FormState> {
 
   submitForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
-    const name = this.nameRef.current?.value;
-    const country = this.countryRef.current?.value;
-    const date = this.dateRef.current?.value;
+    if (
+      !this.nameRef.current ||
+      !this.countryRef.current ||
+      !this.dateRef.current ||
+      !this.benefitsRef.every((i) => i.current) ||
+      !this.imgRef.current ||
+      !this.notificationsRef.every((i) => i.current)
+    )
+      return;
+    const name = this.nameRef.current.value;
+    const country = this.countryRef.current.value;
+    const date = this.dateRef.current.value;
     const benefits = this.benefitsRef.map((benefit) => {
       if (!benefit.current) return;
-      return { name: [benefit.current.name], checked: benefit.current.checked };
+      return { name: benefit.current.name, checked: benefit.current.checked };
     });
-    const img = this.imgRef.current?.value;
+    const img = this.imgRef.current.value;
     const notification = this.notificationsRef.find((radio) => radio.current?.checked);
 
     this.setState({ isNameValid: checkNameValid(name) });
@@ -92,6 +100,20 @@ export class Form extends React.Component<object, FormState> {
     this.setState({ isImgChecked: !!img });
     this.setState({ isNotificationChecked: !!notification });
     this.setState({ isDataProcess: !!this.dataRef.current?.checked });
+
+    if (
+      (this.state.isNameValid &&
+        this.state.isDateValid &&
+        this.state.isCountrySelect &&
+        this.state.isBenefitsChecked,
+      this.state.isImgChecked &&
+        this.state.isNotificationChecked &&
+        this.state.isDataProcess 
+    ) {
+      // const newBenefits: CardBenefits[]= benefits.filter(i => i !== undefined);
+      //  const card = { name, country, date, img, newBenefits , notification };
+      // this.props.onSubmit(card);
+    }
   }
 
   render() {
