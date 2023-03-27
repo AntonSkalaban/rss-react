@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/pages/Main/Search-bar.tsx</title>
+    <title>Code coverage report for src/pages/Forms/FormComponents/TextInput.tsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../../prettify.css" />
-    <link rel="stylesheet" href="../../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../../sort-arrow-sprite.png);
+            background-image: url(../../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/pages/Main</a> Search-bar.tsx</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/pages/Forms/FormComponents</a> TextInput.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.93% </span>
+                <span class="strong">58.62% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>31/33</span>
+                <span class='fraction'>17/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/6</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/6</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.93% </span>
+                <span class="strong">58.62% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>31/33</span>
+                <span class='fraction'>17/29</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -92,16 +92,7 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -115,53 +106,50 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 &nbsp;
-const getValue = () =&gt; {
-  const value = localStorage.getItem('value');
-  return <span class="branch-0 cbranch-no" title="branch not covered" >value ? value : '</span>';
-};
+interface TextInputProps {
+  innerRef?: React.Ref&lt;HTMLInputElement&gt;;
+  label: string;
+  isValid: boolean;
+}
 &nbsp;
-export class SearchBar extends React.Component&lt;object, { value: string }&gt; {
-  constructor(props: object) {
-    super(props);
-    this.state = { value: getValue() };
-    this.handleChange = this.handleChange.bind(this);
-  }
-&nbsp;
-<span class="fstat-no" title="function not covered" >  handleChange(e: React.FormEvent&lt;HTMLInputElement&gt;) {</span>
-<span class="cstat-no" title="statement not covered" >    this.setState({ value: (e.target as HTMLInputElement)?.value });</span>
+class TextInput extends React.Component&lt;TextInputProps, object&gt; {
+<span class="fstat-no" title="function not covered" >  constructor(props: TextInputProps) {</span>
+<span class="cstat-no" title="statement not covered" >    super(props);</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-  componentWillUnmount() {
-    localStorage.setItem('value', this.state.value);
-  }
-&nbsp;
-  render() {
-    return (
-      &lt;input
-        type="text"
-        placeholder="Search here"
-        onChange={this.handleChange}
-        value={this.state.value}
-      /&gt;
-    );
-  }
+<span class="fstat-no" title="function not covered" >  render() {</span>
+<span class="cstat-no" title="statement not covered" >    return (</span>
+<span class="cstat-no" title="statement not covered" >      &lt;label&gt;</span>
+<span class="cstat-no" title="statement not covered" >        {this.props.label}:</span>
+<span class="cstat-no" title="statement not covered" >        &lt;input type="text" ref={this.props.innerRef} /&gt;</span>
+<span class="cstat-no" title="statement not covered" >        {this.props.isValid ? '' : &lt;p className="error"&gt;Enter first and last name &lt;/p&gt;}</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/label&gt;</span>
+<span class="cstat-no" title="statement not covered" >    );</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 }
+&nbsp;
+export const TextInputRef = React.forwardRef(
+  (props: TextInputProps, ref: React.Ref&lt;HTMLInputElement&gt;) =&gt; (
+<span class="cstat-no" title="statement not covered" >    &lt;TextInput innerRef={ref} {...props} /&gt;</span>
+  )
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >);</span></span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -169,16 +157,16 @@ export class SearchBar extends React.Component&lt;object, { value: string }&gt; 
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-20T16:01:22.397Z
+                at 2023-03-27T18:23:41.410Z
             </div>
-        <script src="../../../prettify.js"></script>
+        <script src="../../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../../sorter.js"></script>
-        <script src="../../../block-navigation.js"></script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
     </body>
 </html>
     

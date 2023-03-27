@@ -9,7 +9,7 @@ import { RadioRef } from './FormComponents/Radio';
 import { SubmitBtn } from './FormComponents/SubmitBtn';
 import './Form.css';
 
-const checkNameValid = (value: string) => {
+export const checkNameValid = (value: string) => {
   const regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
   return regName.test(value.trim());
 };
