@@ -2,6 +2,7 @@ import React from 'react';
 
 interface RadioProps {
   name: string;
+  value: string;
   label: string;
   innerRef?: React.Ref<HTMLInputElement>;
 }
@@ -13,7 +14,12 @@ export class Radio extends React.Component<RadioProps, object> {
   render() {
     return (
       <label>
-        <input type="radio" name={this.props.name} ref={this.props.innerRef} />
+        <input
+          type="radio"
+          name={this.props.name}
+          value={this.props.value}
+          ref={this.props.innerRef}
+        />
         {this.props.label}
       </label>
     );

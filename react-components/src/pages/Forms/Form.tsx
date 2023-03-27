@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormState, FormProps, ICard, CardBenefits } from './types';
+import { FormState, FormProps, CardProps, nonNullable } from './types';
 import { TextInputRef } from './FormComponents/TextInput';
 import { DateRef } from './FormComponents/DateInput';
 import { SelectRef } from './FormComponents/Select';
@@ -9,10 +9,9 @@ import { RadioRef } from './FormComponents/Radio';
 import { SubmitBtn } from './FormComponents/SubmitBtn';
 import './Form.css';
 
-const checkNameValid = (value: string | undefined) => {
-  if (!value) return false;
+const checkNameValid = (value: string) => {
   const regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
-  return regName.test(value);
+  return regName.test(value.trim());
 };
 
 export class Form extends React.Component<FormProps, FormState> {
@@ -33,17 +32,17 @@ export class Form extends React.Component<FormProps, FormState> {
       benefitsCheckboxes: [
         {
           id: 1,
-          name: 'fast-delivery-checkbox',
+          name: 'fast-delivery',
           label: 'Fast delivery',
         },
         {
           id: 2,
-          name: 'good-peacking-checkbox',
+          name: 'good-peacking',
           label: 'Good packing',
         },
         {
           id: 3,
-          name: 'correct-descriptiom-checkbox',
+          name: 'correct-descriptiom',
           label: 'The product fully corresponds to the description',
         },
       ],
@@ -78,41 +77,58 @@ export class Form extends React.Component<FormProps, FormState> {
       !this.nameRef.current ||
       !this.countryRef.current ||
       !this.dateRef.current ||
-      !this.benefitsRef.every((i) => i.current) ||
       !this.imgRef.current ||
-      !this.notificationsRef.every((i) => i.current)
+      !this.dataRef.current
     )
       return;
     const name = this.nameRef.current.value;
     const country = this.countryRef.current.value;
     const date = this.dateRef.current.value;
-    const benefits = this.benefitsRef.map((benefit) => {
-      if (!benefit.current) return;
-      return { name: benefit.current.name, checked: benefit.current.checked };
-    });
-    const img = this.imgRef.current.value;
-    const notification = this.notificationsRef.find((radio) => radio.current?.checked);
+    const file = this.imgRef.current.files;
+    const benefits = this.benefitsRef
+      .map((benefit) => {
+        if (!benefit.current || !benefit.current.checked) return;
+        return { name: benefit.current.name, checked: benefit.current.checked };
+      })
+      .filter(nonNullable);
+    const notifications = this.notificationsRef.find((radio) => radio.current?.checked)?.current
+      ?.value;
 
     this.setState({ isNameValid: checkNameValid(name) });
     this.setState({ isDateValid: !!date });
     this.setState({ isCountrySelect: !!country });
     this.setState({ isBenefitsChecked: benefits.some((benefit) => benefit?.checked) });
-    this.setState({ isImgChecked: !!img });
-    this.setState({ isNotificationChecked: !!notification });
+    this.setState({ isImgChecked: !!file });
+    this.setState({ isNotificationChecked: !!notifications });
     this.setState({ isDataProcess: !!this.dataRef.current?.checked });
-
     if (
-      (this.state.isNameValid &&
-        this.state.isDateValid &&
-        this.state.isCountrySelect &&
-        this.state.isBenefitsChecked,
+      this.state.isNameValid &&
+      this.state.isDateValid &&
+      this.state.isCountrySelect &&
+      this.state.isBenefitsChecked &&
       this.state.isImgChecked &&
-        this.state.isNotificationChecked &&
-        this.state.isDataProcess 
+      this.state.isNotificationChecked &&
+      this.state.isDataProcess &&
+      notifications &&
+      file
     ) {
-      // const newBenefits: CardBenefits[]= benefits.filter(i => i !== undefined);
-      //  const card = { name, country, date, img, newBenefits , notification };
-      // this.props.onSubmit(card);
+      const image = URL.createObjectURL(file[0]);
+      const card = { name, country, date, image, benefits, notifications };
+      this.props.onSubmit(card as CardProps);
+
+      alert('sucсess');
+
+      this.nameRef.current.value = '';
+      this.countryRef.current.value = '';
+      this.dateRef.current.value = '';
+      this.imgRef.current.value = '';
+      this.benefitsRef.forEach((ref) => {
+        if (ref.current) ref.current.checked = false;
+      });
+      this.notificationsRef.forEach((ref) => {
+        if (ref.current) ref.current.checked = false;
+      });
+      this.dataRef.current.checked = false;
     }
   }
 
@@ -149,6 +165,7 @@ export class Form extends React.Component<FormProps, FormState> {
               <RadioRef
                 key={radio.id}
                 name={radio.name}
+                value={radio.value}
                 ref={this.notificationsRef[radio.id - 1]}
                 label={radio.label}
               />

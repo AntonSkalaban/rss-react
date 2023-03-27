@@ -1,3 +1,6 @@
+export function nonNullable<T>(value: T): value is NonNullable<T> {
+  return value !== null && value !== undefined;
+}
 export interface FormState {
   benefitsCheckboxes: BenefitCheckbox[];
   notificationsRadio: NotificationRadio[];
@@ -11,7 +14,7 @@ export interface FormState {
 }
 
 export interface FormProps {
-  onSubmit: (card: ICard) => void;
+  onSubmit: (card: CardProps) => void;
 }
 
 interface BenefitCheckbox {
@@ -27,15 +30,11 @@ interface NotificationRadio {
   label: string;
 }
 
-export interface CardBenefits {
-  name: string[];
-  checked: boolean;
-}
-export interface ICard {
+export interface CardProps {
   name: string;
   country: string;
   date: string;
-  img: string;
+  image: string;
+  benefits: { name: string; checked: boolean }[];
   notifications: string;
-  benefits: CardBenefits[];
 }
