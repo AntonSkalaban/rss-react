@@ -1,30 +1,29 @@
 import React from 'react';
+import { Path, UseFormRegister } from 'react-hook-form';
+import { IFormValues } from '../Form';
 
 interface RadioProps {
-  name: string;
+  name: Path<IFormValues>;
   value: string;
   label: string;
+  register: UseFormRegister<IFormValues>;
   innerRef?: React.Ref<HTMLInputElement>;
 }
-export class Radio extends React.Component<RadioProps, object> {
-  constructor(props: RadioProps) {
-    super(props);
-  }
 
-  render() {
-    return (
-      <label>
-        <input
-          type="radio"
-          name={this.props.name}
-          value={this.props.value}
-          ref={this.props.innerRef}
-        />
-        {this.props.label}
-      </label>
-    );
-  }
-}
+const Radio = ({ name, label, value, register }: RadioProps) => {
+  return (
+    <label>
+      <input
+        {...register(name, { required: 'Radio is required' })}
+        type="radio"
+        name={name}
+        value={value}
+      />
+
+      {label}
+    </label>
+  );
+};
 
 export const RadioRef = React.forwardRef((props: RadioProps, ref: React.Ref<HTMLInputElement>) => (
   <Radio innerRef={ref} {...props} />

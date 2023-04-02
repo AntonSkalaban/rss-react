@@ -1,26 +1,23 @@
 import React from 'react';
+import { FieldErrors, FormState, UseFormRegister } from 'react-hook-form';
+import { IFormValues } from '../Form';
 
 interface TextInputProps {
   innerRef?: React.Ref<HTMLInputElement>;
   label: string;
-  isValid: boolean;
+  register: UseFormRegister<IFormValues>;
+  formState: FormState<IFormValues>;
 }
 
-class TextInput extends React.Component<TextInputProps, object> {
-  constructor(props: TextInputProps) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <label>
-        {this.props.label}:
-        <input type="text" ref={this.props.innerRef} />
-        {this.props.isValid ? '' : <p className="error">Enter first and last name </p>}
-      </label>
-    );
-  }
-}
+const TextInput = ({ label, register, formState: { errors } }: TextInputProps) => {
+  return (
+    <label>
+      {label}:
+      <input type="text" {...register('Name', { required: 'First name is required' })} />
+      {errors.Name && <p className="error">{errors.Name.message}</p>}
+    </label>
+  );
+};
 
 export const TextInputRef = React.forwardRef(
   (props: TextInputProps, ref: React.Ref<HTMLInputElement>) => (

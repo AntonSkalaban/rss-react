@@ -1,33 +1,30 @@
 import React from 'react';
+import { FormState, UseFormRegister } from 'react-hook-form';
+import { IFormValues } from '../Form';
 
 interface SelectProps {
   innerRef?: React.Ref<HTMLSelectElement>;
-  isSelect: boolean;
+  register: UseFormRegister<IFormValues>;
+  formState: FormState<IFormValues>;
 }
 
-class Select extends React.Component<SelectProps, object> {
-  constructor(props: SelectProps) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <label>
-        Choose your country:
-        <select ref={this.props.innerRef}>
-          <option value="" defaultValue="true">
-            Country
-          </option>
-          <option value="Poland">Poland</option>
-          <option value="Belarus">Belarus</option>
-          <option value="Russia">Russia</option>
-          <option value="Ukraine">Ukraine</option>
-        </select>
-        {this.props.isSelect ? '' : <p className="error">Error </p>}
-      </label>
-    );
-  }
-}
+const Select = ({ register, formState: { errors } }: SelectProps) => {
+  return (
+    <label>
+      Choose your country:
+      <select {...register('Country', { required: 'Country is required' })}>
+        <option value="" defaultValue="true">
+          Country
+        </option>
+        <option value="Poland">Poland</option>
+        <option value="Belarus">Belarus</option>
+        <option value="Russia">Russia</option>
+        <option value="Ukraine">Ukraine</option>
+      </select>
+      {errors.Country && <p className="error">{errors.Country.message}</p>}
+    </label>
+  );
+};
 
 export const SelectRef = React.forwardRef(
   (props: SelectProps, ref: React.Ref<HTMLSelectElement>) => <Select innerRef={ref} {...props} />

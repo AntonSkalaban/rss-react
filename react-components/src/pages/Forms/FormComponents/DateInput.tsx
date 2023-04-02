@@ -1,26 +1,22 @@
 import React from 'react';
+import { FormState, UseFormRegister } from 'react-hook-form';
+import { IFormValues } from '../Form';
 
 interface DateInputProps {
   innerRef?: React.Ref<HTMLInputElement>;
   label: string;
-  isValid: boolean;
+  register: UseFormRegister<IFormValues>;
+  formState: FormState<IFormValues>;
 }
-
-export class DateInput extends React.Component<DateInputProps, object> {
-  constructor(props: DateInputProps) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <label>
-        {this.props.label}:
-        <input type="date" ref={this.props.innerRef} />
-        {this.props.isValid ? '' : <p className="error">Error </p>}
-      </label>
-    );
-  }
-}
+const DateInput = ({ label, register, formState: { errors } }: DateInputProps) => {
+  return (
+    <label>
+      {label}:
+      <input type="date" {...register('Date', { required: 'Date is required' })} />
+      {errors.Date && <p className="error">{errors.Date.message}</p>}
+    </label>
+  );
+};
 
 export const DateRef = React.forwardRef(
   (props: DateInputProps, ref: React.Ref<HTMLInputElement>) => (

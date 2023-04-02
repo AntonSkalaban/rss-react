@@ -1,44 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card } from './Card';
 import { Form } from './Form';
-import { CardProps } from './types';
+import { ICard } from './types';
 
-interface FormsPageState {
-  cards: CardProps[];
-}
+export const Forms = () => {
+  const [cards, setCards] = useState([] as ICard[]);
 
-export class Forms extends React.Component<object, FormsPageState> {
-  constructor(props: FormsPageState) {
-    super(props);
-    this.state = { cards: [] as CardProps[] };
-    this.addCard = this.addCard.bind(this);
-  }
+  const addCard = (card: ICard) => {
+    setCards([...cards, card]);
+  };
 
-  addCard(card: CardProps) {
-    this.setState({ cards: [...this.state.cards, card] });
-  }
-
-  render() {
-    return (
-      <>
-        <h2>Forms</h2>
-        <Form onSubmit={this.addCard} />
-        <div style={{ display: 'flex' }}>
-          {this.state.cards.map((card, index) => {
-            return (
-              <Card
-                key={index}
-                name={card.name}
-                country={card.country}
-                date={card.date}
-                image={card.image}
-                benefits={card.benefits}
-                notifications={card.notifications}
-              />
-            );
-          })}
-        </div>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <h2>Forms</h2>
+      <Form onSubmit={addCard} />
+      <div style={{ display: 'flex' }}>
+        {cards.map((card, index) => {
+          return (
+            <Card
+              key={index}
+              name={card.name}
+              country={card.country}
+              date={card.date}
+              image={card.image}
+              benefits={card.benefits}
+              notifications={card.notifications}
+            />
+          );
+        })}
+      </div>
+    </>
+  );
+};

@@ -1,25 +1,27 @@
 import React from 'react';
+import { Path, UseFormRegister } from 'react-hook-form';
+import { IFormValues } from '../Form';
 
 interface CheckboxProps {
   innerRef?: React.Ref<HTMLInputElement>;
-  name: string;
+  name: Path<IFormValues>;
+  value: string;
   label: string;
+  register: UseFormRegister<IFormValues>;
 }
 
-class Checkbox extends React.Component<CheckboxProps, object> {
-  constructor(props: CheckboxProps) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <label>
-        <input type="checkbox" name={this.props.name} ref={this.props.innerRef} />
-        {this.props.label}
-      </label>
-    );
-  }
-}
+const Checkbox = ({ name, value, label, register }: CheckboxProps) => {
+  return (
+    <label>
+      <input
+        type="checkbox"
+        value={value}
+        {...register(name, { required: 'Benefits is required' })}
+      />
+      {label}
+    </label>
+  );
+};
 
 export const CheckboxRef = React.forwardRef(
   (props: CheckboxProps, ref: React.Ref<HTMLInputElement>) => <Checkbox innerRef={ref} {...props} />
