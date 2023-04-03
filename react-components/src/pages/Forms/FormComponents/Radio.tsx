@@ -7,24 +7,23 @@ interface RadioProps {
   value: string;
   label: string;
   register: UseFormRegister<IFormValues>;
-  innerRef?: React.Ref<HTMLInputElement>;
+  // innerRef?: React.Ref<HTMLInputElement>;
 }
 
-const Radio = ({ name, label, value, register }: RadioProps) => {
+export const Radio = ({ name, label, value, register }: RadioProps) => {
   return (
     <label>
       <input
-        {...register(name, { required: 'Radio is required' })}
+        {...register(name, { required: 'This field is required' })}
         type="radio"
         name={name}
         value={value}
       />
-
       {label}
     </label>
   );
 };
 
-export const RadioRef = React.forwardRef((props: RadioProps, ref: React.Ref<HTMLInputElement>) => (
-  <Radio innerRef={ref} {...props} />
-));
+// export const RadioRef = React.forwardRef((props: RadioProps, ref: React.Ref<HTMLInputElement>) => (
+//   <Radio innerRef={ref} {...props} />
+// ));

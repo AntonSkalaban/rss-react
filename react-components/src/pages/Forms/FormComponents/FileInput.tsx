@@ -3,13 +3,13 @@ import { FormState, UseFormRegister } from 'react-hook-form';
 import { IFormValues } from '../Form';
 
 interface FileInputProps {
-  innerRef?: React.Ref<HTMLInputElement>;
+  // innerRef?: React.Ref<HTMLInputElement>;
   register: UseFormRegister<IFormValues>;
   formState: FormState<IFormValues>;
   label: string;
 }
 
-const FileInput = ({ label, register, formState: { errors } }: FileInputProps) => {
+export const FileInput = ({ label, register, formState: { errors } }: FileInputProps) => {
   return (
     <label htmlFor="file">
       {label}:
@@ -25,8 +25,8 @@ const FileInput = ({ label, register, formState: { errors } }: FileInputProps) =
   );
 };
 
-export const FileRef = React.forwardRef(
-  (props: FileInputProps, ref: React.Ref<HTMLInputElement>) => (
-    <FileInput innerRef={ref} {...props} />
-  )
-);
+// export const FileRef = React.forwardRef(
+//   (props: FileInputProps, ref: React.Ref<HTMLInputElement>) => (
+//     <FileInput innerRef={ref} {...props} />
+//   )
+// );

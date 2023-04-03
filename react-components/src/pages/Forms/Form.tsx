@@ -1,22 +1,20 @@
-import React, { useRef, useState } from 'react';
-import { FormProps, ICard, nonNullable } from './types';
-import { TextInputRef } from './FormComponents/TextInput';
-import { DateRef } from './FormComponents/DateInput';
-import { SelectRef } from './FormComponents/Select';
-import { FileRef } from './FormComponents/FileInput';
-import { CheckboxRef } from './FormComponents/Checkbox';
-import { RadioRef } from './FormComponents/Radio';
+import React, { useEffect } from 'react';
+import { ICard } from './types';
+import { TextInput } from './FormComponents/TextInput';
+import { DateInput } from './FormComponents/DateInput';
+import { Select } from './FormComponents/Select';
+import { FileInput } from './FormComponents/FileInput';
+import { Checkbox } from './FormComponents/Checkbox';
+import { Radio } from './FormComponents/Radio';
 import { SubmitBtn } from './FormComponents/SubmitBtn';
 import { benefitsCheckboxes, notificationsRadio } from './formData';
 import './Form.css';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-export const checkNameValid = (value: string) => {
-  const regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
-  return regName.test(value.trim());
-};
-
+export interface FormProps {
+  onSubmit: (card: ICard) => void;
+}
 export interface IFormValues {
   Name: string;
   Date: string;
@@ -24,6 +22,7 @@ export interface IFormValues {
   Benefits: string;
   Image: string;
   Radio: string;
+  Data: string;
 }
 
 export const Form = (props: FormProps) => {
@@ -32,84 +31,40 @@ export const Form = (props: FormProps) => {
     handleSubmit,
     formState: { errors },
     formState,
+    reset,
   } = useForm<IFormValues>();
 
+  useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      reset();
+    }
+  }, [formState, reset]);
+
   const onSubmit: SubmitHandler<IFormValues> = (data) => {
-    console.log(data);
+    const name = data.Name;
+    const country = data.Country;
+    const date = data.Date;
+    const image = URL.createObjectURL(data.Image[0] as unknown as Blob | MediaSource);
+    const benefits = [...data.Benefits];
+    const notifications = data.Radio;
+
+    const card = { name, country, date, image, benefits, notifications };
+    props.onSubmit(card as ICard);
+    alert('Succsess!');
   };
-  const onError = (errors, e) => console.log(errors, e);
-
-  // const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   if (
-  //     !nameRef.current ||
-  //     !countryRef.current ||
-  //     !dateRef.current ||
-  //     !imgRef.current ||
-  //     !dataRef.current
-  //   )
-  //     return;
-  //   const name = nameRef.current.value;
-  //   const country = countryRef.current.value;
-  //   const date = dateRef.current.value;
-  //   const image = imgRef.current.files?.length ? URL.createObjectURL(imgRef.current.files[0]) : '';
-  //   const benefits = benefitsRef
-  //     .map((benefit) => {
-  //       if (benefit.current?.checked) return benefit.current?.value;
-  //     })
-  //     .filter(nonNullable);
-  //   const notifications = notificationsRef.find((radio) => radio.current?.checked)?.current?.value;
-  //   const isDataProcess = dataRef.current?.checked;
-
-  //   setNameValid(checkNameValid(name));
-  //   setDateChecked(!!date);
-  //   setCountrySelect(!!country);
-  //   setBenefitsChecked(!!benefits.length);
-  //   setImgChecked(!!image);
-  //   setNotificationChecked(!!notifications);
-  //   setDataProcess(isDataProcess);
-
-  //   if (
-  //     isNameValid &&
-  //     isDateChecked &&
-  //     isCountrySelect &&
-  //     isBenefitsChecked &&
-  //     isImgChecked &&
-  //     isNotificationChecked &&
-  //     isDataProcess &&
-  //     notifications
-  //   ) {
-  //     const card = { name, country, date, image, benefits, notifications };
-  //     props.onSubmit(card as ICard);
-
-  //     alert('sucсess');
-
-  //     nameRef.current.value = '';
-  //     countryRef.current.value = '';
-  //     dateRef.current.value = '';
-  //     imgRef.current.value = '';
-  //     benefitsRef.forEach((ref) => {
-  //       if (ref.current) ref.current.checked = false;
-  //     });
-  //     notificationsRef.forEach((ref) => {
-  //       if (ref.current) ref.current.checked = false;
-  //     });
-  //     dataRef.current.checked = false;
-  //   }
-  // };
 
   return (
-    <form className="form" onSubmit={handleSubmit(onSubmit, onError)}>
-      <TextInputRef register={register} formState={formState} label="Name" />
-      <DateRef register={register} formState={formState} label="Date of receipt of goods" />
-      <SelectRef register={register} formState={formState} />
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+      <TextInput register={register} formState={formState} label="Name" />
+      <DateInput register={register} formState={formState} label="Date of receipt of goods" />
+      <Select register={register} formState={formState} />
       <div className="inputs-block">
         <p>Select service benefits:</p>
         {benefitsCheckboxes.map((checkbox) => {
           return (
-            <CheckboxRef
+            <Checkbox
               key={checkbox.id}
-              name={'Benefits'}
+              name={checkbox.name}
               value={checkbox.value}
               label={checkbox.label}
               register={register}
@@ -119,15 +74,15 @@ export const Form = (props: FormProps) => {
         {errors.Benefits && <p className="error">{errors.Benefits.message}</p>}
       </div>
       <div>
-        <FileRef register={register} formState={formState} label="Add products photo" />
+        <FileInput register={register} formState={formState} label="Add products photo" />
       </div>
       <div className="inputs-block">
         {notificationsRadio.map((radio) => {
           return (
-            <RadioRef
+            <Radio
               register={register}
               key={radio.id}
-              name={'Radio'}
+              name={radio.name}
               value={radio.value}
               label={radio.label}
             />
@@ -135,13 +90,13 @@ export const Form = (props: FormProps) => {
         })}
         {errors.Radio && <p className="error">{errors.Radio.message}</p>}
       </div>
-      {/* <CheckboxRef
-        name="data-checkbox"
+      <Checkbox
+        name="Data"
         value="process-data"
-        ref={dataRef}
+        register={register}
         label="I consent to my personal data"
       />
-      {isDataProcess ? '' : <p className="error">Error </p>}  */}
+      {errors.Data && <p className="error">{errors.Data.message}</p>}
       <SubmitBtn />
     </form>
   );
