@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Navigation } from './Navigation';
 
@@ -22,25 +22,20 @@ const getPage = () => {
   }
 };
 
-export class Layout extends React.Component<object, { page: Pages }> {
-  constructor(props: object) {
-    super(props);
-    this.state = { page: getPage() };
-    this.handleClick = this.handleClick.bind(this);
-  }
+export const Layout = () => {
+  const [page, setPage] = useState(getPage());
 
-  handleClick(page: Pages) {
-    this.setState({ page: page });
-  }
-  render() {
-    return (
-      <>
-        <header className="header">
-          <Navigation onClick={this.handleClick} />
-          <h2>You are on the {this.state.page} page</h2>
-        </header>
-        <Outlet />
-      </>
-    );
-  }
-}
+  const handleClick = (page: Pages) => {
+    setPage(page);
+  };
+
+  return (
+    <>
+      <header className="header">
+        <Navigation onClick={handleClick} />
+        <h2>You are on the {page} page</h2>
+      </header>
+      <Outlet />
+    </>
+  );
+};
