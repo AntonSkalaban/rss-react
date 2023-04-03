@@ -16,7 +16,11 @@ export const TextInput = ({ label, register, formState: { errors } }: TextInputP
       <input
         type="text"
         {...register('Name', {
-          required: 'First name is required',
+          required: 'Name is required',
+          pattern: {
+            value: /^[a-zA-Z]+ [a-zA-Z]+$/,
+            message: 'Please Enter A Valid First and Last name!',
+          },
         })}
       />
       {errors.Name && <p className="error"> {errors.Name.message}</p>}
