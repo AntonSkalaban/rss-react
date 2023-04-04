@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Navigation } from './Navigation';
 
 export enum Pages {
@@ -9,8 +9,8 @@ export enum Pages {
   Error = 'Error',
 }
 
-const getPage = () => {
-  switch (window.location.pathname) {
+const getPage = (path: string) => {
+  switch (path) {
     case '/':
       return Pages.Main;
     case '/about':
@@ -23,7 +23,10 @@ const getPage = () => {
 };
 
 export const Layout = () => {
-  const [page, setPage] = useState(getPage());
+  const location = useLocation();
+  const path = location.pathname;
+
+  const [page, setPage] = useState(getPage(path));
 
   const handleClick = (page: Pages) => {
     setPage(page);

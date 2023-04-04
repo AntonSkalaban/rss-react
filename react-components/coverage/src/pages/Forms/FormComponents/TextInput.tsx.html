@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58.62% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/29</span>
+                <span class='fraction'>35/35</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">66.66% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58.62% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>17/29</span>
+                <span class='fraction'>35/35</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -92,7 +92,13 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -102,54 +108,66 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import { FormState, UseFormRegister } from 'react-hook-form';
+import { IFormValues } from '../Form';
 &nbsp;
 interface TextInputProps {
-  innerRef?: React.Ref&lt;HTMLInputElement&gt;;
+  // innerRef?: React.Ref&lt;HTMLInputElement&gt;;
   label: string;
-  isValid: boolean;
+  register: UseFormRegister&lt;IFormValues&gt;;
+  formState: FormState&lt;IFormValues&gt;;
 }
 &nbsp;
-class TextInput extends React.Component&lt;TextInputProps, object&gt; {
-<span class="fstat-no" title="function not covered" >  constructor(props: TextInputProps) {</span>
-<span class="cstat-no" title="statement not covered" >    super(props);</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+export const TextInput = ({ label, register, formState: { errors } }: TextInputProps) =&gt; {
+  return (
+    &lt;label&gt;
+      {label}:
+      &lt;input
+        type="text"
+        {...register('Name', {
+          required: 'Name is required',
+          pattern: {
+            value: /^[a-zA-Z]+ [a-zA-Z]+$/,
+            message: 'Please Enter A Valid First and Last name!',
+          },
+        })}
+      /&gt;
+      {errors.<span class="branch-0 cbranch-no" title="branch not covered" >Name &amp;&amp; &lt;p className="error"&gt; {errors.Name.message}&lt;/p&gt;}</span>
+    &lt;/label&gt;
+  );
+};
 &nbsp;
-<span class="fstat-no" title="function not covered" >  render() {</span>
-<span class="cstat-no" title="statement not covered" >    return (</span>
-<span class="cstat-no" title="statement not covered" >      &lt;label&gt;</span>
-<span class="cstat-no" title="statement not covered" >        {this.props.label}:</span>
-<span class="cstat-no" title="statement not covered" >        &lt;input type="text" ref={this.props.innerRef} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        {this.props.isValid ? '' : &lt;p className="error"&gt;Enter first and last name &lt;/p&gt;}</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/label&gt;</span>
-<span class="cstat-no" title="statement not covered" >    );</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-}
-&nbsp;
-export const TextInputRef = React.forwardRef(
-  (props: TextInputProps, ref: React.Ref&lt;HTMLInputElement&gt;) =&gt; (
-<span class="cstat-no" title="statement not covered" >    &lt;TextInput innerRef={ref} {...props} /&gt;</span>
-  )
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >);</span></span>
+// export const TextInputRef = React.forwardRef(
+//   (props: TextInputProps, ref: React.Ref&lt;HTMLInputElement&gt;) =&gt; (
+//     &lt;TextInput innerRef={ref} {...props} /&gt;
+//   )
+// );
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -157,7 +175,7 @@ export const TextInputRef = React.forwardRef(
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-27T18:23:41.410Z
+                at 2023-04-04T15:29:27.164Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

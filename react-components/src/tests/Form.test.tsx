@@ -1,26 +1,33 @@
 import React from 'react';
 import { describe, expect, test } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { Card } from '../pages/Forms/Card';
+import { Form } from '../pages/Forms/Form';
 
-import { checkNameValid } from '../pages/Forms/Form';
-import { DateInput } from '../pages/Forms/FormComponents/DateInput';
+describe('Form tests', () => {
+  test('inputs', async () => {
+    render(<Form onSubmit={() => null} />);
+
+    fireEvent.input(screen.getByLabelText('Name:'), {
+      target: {
+        value: 'John Cena',
+      },
+    });
+
+    await userEvent.click(screen.getByText('I consent to my personal data'));
+
+    expect((screen.getByLabelText('Name:') as HTMLInputElement).value).toBe('John Cena');
+    expect(screen.getByLabelText('I consent to my personal data')).toBeChecked();
+  });
+});
 
 describe('Accordion test', () => {
   test('Should show card', () => {
     render(
-      <Card name="User Test" image="url" country={''} date={''} benefits={[]} notifications={''} />
+      <Card name="Test Card" image="url" country={''} date={''} benefits={[]} notifications={''} />
     );
-    expect(screen.getByText(/User Test/i)).toBeInTheDocument();
-  });
-
-  test("name doesn't be valid", () => {
-    expect(checkNameValid('Mary')).toBeFalsy();
-  });
-
-  test('Should show Error', () => {
-    render(<DateInput label={''} isValid={false} />);
-    expect(screen.getByText(/Error/i)).toBeInTheDocument();
+    expect(screen.getByText(/Test Card/i)).toBeInTheDocument();
   });
 });

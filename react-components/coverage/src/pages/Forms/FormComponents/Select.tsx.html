@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">44.11% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/34</span>
+                <span class='fraction'>31/31</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">66.66% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">44.11% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/34</span>
+                <span class='fraction'>31/31</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -94,10 +94,7 @@
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -106,65 +103,59 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import { FormState, UseFormRegister } from 'react-hook-form';
+import { IFormValues } from '../Form';
 &nbsp;
 interface SelectProps {
-  innerRef?: React.Ref&lt;HTMLSelectElement&gt;;
-  isSelect: boolean;
+  // innerRef?: React.Ref&lt;HTMLSelectElement&gt;;
+  register: UseFormRegister&lt;IFormValues&gt;;
+  formState: FormState&lt;IFormValues&gt;;
 }
 &nbsp;
-class Select extends React.Component&lt;SelectProps, object&gt; {
-<span class="fstat-no" title="function not covered" >  constructor(props: SelectProps) {</span>
-<span class="cstat-no" title="statement not covered" >    super(props);</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+export const Select = ({ register, formState: { errors } }: SelectProps) =&gt; {
+  return (
+    &lt;label&gt;
+      Choose your country:
+      &lt;select {...register('Country', { required: 'Country is required' })}&gt;
+        &lt;option value="" defaultValue="true"&gt;
+          Country
+        &lt;/option&gt;
+        &lt;option value="Poland"&gt;Poland&lt;/option&gt;
+        &lt;option value="Belarus"&gt;Belarus&lt;/option&gt;
+        &lt;option value="Russia"&gt;Russia&lt;/option&gt;
+        &lt;option value="Ukraine"&gt;Ukraine&lt;/option&gt;
+      &lt;/select&gt;
+      {errors.<span class="branch-0 cbranch-no" title="branch not covered" >Country &amp;&amp; &lt;p className="error"&gt;{errors.Country.message}&lt;/p&gt;}</span>
+    &lt;/label&gt;
+  );
+};
 &nbsp;
-<span class="fstat-no" title="function not covered" >  render() {</span>
-<span class="cstat-no" title="statement not covered" >    return (</span>
-<span class="cstat-no" title="statement not covered" >      &lt;label&gt;</span>
-<span class="cstat-no" title="statement not covered" >        Choose your country:</span>
-<span class="cstat-no" title="statement not covered" >        &lt;select ref={this.props.innerRef}&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;option value="" defaultValue="true"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            Country</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/option&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;option value="Poland"&gt;Poland&lt;/option&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;option value="Belarus"&gt;Belarus&lt;/option&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;option value="Russia"&gt;Russia&lt;/option&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;option value="Ukraine"&gt;Ukraine&lt;/option&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/select&gt;</span>
-<span class="cstat-no" title="statement not covered" >        {this.props.isSelect ? '' : &lt;p className="error"&gt;Error &lt;/p&gt;}</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/label&gt;</span>
-<span class="cstat-no" title="statement not covered" >    );</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-}
-&nbsp;
-export const SelectRef = React.forwardRef(
-  (props: SelectProps, ref: React.Ref&lt;HTMLSelectElement&gt;) =&gt; &lt;Select innerRef={ref} {...props} /&gt;
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >);</span></span>
+// export const SelectRef = React.forwardRef(
+//   (props: SelectProps, ref: React.Ref&lt;HTMLSelectElement&gt;) =&gt; &lt;Select innerRef={ref} {...props} /&gt;
+// );
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -172,7 +163,7 @@ export const SelectRef = React.forwardRef(
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-27T18:23:41.410Z
+                at 2023-04-04T15:29:27.164Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>
