@@ -3,7 +3,6 @@ import { FormState, UseFormRegister } from 'react-hook-form';
 import { IFormValues } from '../Form';
 
 interface SelectProps {
-  // innerRef?: React.Ref<HTMLSelectElement>;
   register: UseFormRegister<IFormValues>;
   formState: FormState<IFormValues>;
 }
@@ -25,7 +24,3 @@ export const Select = ({ register, formState: { errors } }: SelectProps) => {
     </label>
   );
 };
-
-// export const SelectRef = React.forwardRef(
-//   (props: SelectProps, ref: React.Ref<HTMLSelectElement>) => <Select innerRef={ref} {...props} />
-// );

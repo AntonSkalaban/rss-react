@@ -3,7 +3,6 @@ import { FormState, UseFormRegister } from 'react-hook-form';
 import { IFormValues } from '../Form';
 
 interface TextInputProps {
-  // innerRef?: React.Ref<HTMLInputElement>;
   label: string;
   register: UseFormRegister<IFormValues>;
   formState: FormState<IFormValues>;
@@ -27,9 +26,3 @@ export const TextInput = ({ label, register, formState: { errors } }: TextInputP
     </label>
   );
 };
-
-// export const TextInputRef = React.forwardRef(
-//   (props: TextInputProps, ref: React.Ref<HTMLInputElement>) => (
-//     <TextInput innerRef={ref} {...props} />
-//   )
-// );

@@ -7,7 +7,6 @@ interface RadioProps {
   value: string;
   label: string;
   register: UseFormRegister<IFormValues>;
-  // innerRef?: React.Ref<HTMLInputElement>;
 }
 
 export const Radio = ({ name, label, value, register }: RadioProps) => {
@@ -23,7 +22,3 @@ export const Radio = ({ name, label, value, register }: RadioProps) => {
     </label>
   );
 };
-
-// export const RadioRef = React.forwardRef((props: RadioProps, ref: React.Ref<HTMLInputElement>) => (
-//   <Radio innerRef={ref} {...props} />
-// ));

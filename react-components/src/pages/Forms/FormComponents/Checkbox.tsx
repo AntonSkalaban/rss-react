@@ -3,7 +3,6 @@ import { Path, UseFormRegister } from 'react-hook-form';
 import { IFormValues } from '../Form';
 
 interface CheckboxProps {
-  // innerRef?: React.Ref<HTMLInputElement>;
   name: Path<IFormValues>;
   value: string;
   label: string;
@@ -22,7 +21,3 @@ export const Checkbox = ({ name, value, label, register }: CheckboxProps) => {
     </label>
   );
 };
-
-// export const CheckboxRef = React.forwardRef(
-//   (props: CheckboxProps, ref: React.Ref<HTMLInputElement>) => <Checkbox innerRef={ref} {...props} />
-// );

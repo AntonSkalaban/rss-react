@@ -3,7 +3,6 @@ import { FormState, UseFormRegister } from 'react-hook-form';
 import { IFormValues } from '../Form';
 
 interface DateInputProps {
-  // innerRef?: React.Ref<HTMLInputElement>;
   label: string;
   register: UseFormRegister<IFormValues>;
   formState: FormState<IFormValues>;
@@ -17,9 +16,3 @@ export const DateInput = ({ label, register, formState: { errors } }: DateInputP
     </label>
   );
 };
-
-// export const DateRef = React.forwardRef(
-//   (props: DateInputProps, ref: React.Ref<HTMLInputElement>) => (
-//     <DateInput innerRef={ref} {...props} />
-//   )
-// );
