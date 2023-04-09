@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Card } from './Card';
+import { Card } from './Card/Card';
 import { Form } from './Form';
-import { ICard } from './types';
+import { ICard } from './Card/types';
 
 export const Forms = () => {
   const [cards, setCards] = useState([] as ICard[]);

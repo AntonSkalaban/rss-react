@@ -1,6 +1,6 @@
 import React from 'react';
 import { ICard } from './types';
-import '../Main/Card.css';
+import './Card.css';
 
 export const Card = ({ name, date, country, image, benefits, notifications }: ICard) => {
   return (

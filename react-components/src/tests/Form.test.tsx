@@ -3,7 +3,7 @@ import { describe, expect, test } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { Card } from '../pages/Forms/Card';
+import { Card } from '../pages/Forms/Card/Card';
 import { Form } from '../pages/Forms/Form';
 
 describe('Form tests', () => {

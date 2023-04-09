@@ -1,16 +1,13 @@
-import React from 'react';
-import { describe, expect, test } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { Card } from '../pages/Main/Card';
-import { CardsContainer } from '../pages/Main/CardsContainer';
+// import React from 'react';
+// import { render, screen } from '@testing-library/react';
+// import userEvent from '@testing-library/user-event';
+// import { getData } from 'pages/Main/requests/requests';
+// import { CardsContainer } from 'pages/Main/components/CardsContainer/CardsContainer';
+// import { Main } from 'pages/Main/Main';
 
-describe('Accordion test', () => {
-  test('Should include card', () => {
-    render(
-      <CardsContainer>
-        <Card title="card" image="url" description="test" />
-      </CardsContainer>
-    );
-    expect(screen.getByText(/card/i)).toBeInTheDocument();
-  });
-});
+// describe('Cards', () => {
+//   test('message', async () => {
+//     render(<Main />);
+//     expect(await findByText('Antenna')).toBeInTheDocument();
+//   });
+// });

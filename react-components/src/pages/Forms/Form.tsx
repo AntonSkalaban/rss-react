@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ICard } from './types';
+import { ICard } from './Card/types';
 import { TextInput } from './FormComponents/TextInput';
 import { DateInput } from './FormComponents/DateInput';
 import { Select } from './FormComponents/Select';
