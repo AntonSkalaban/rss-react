@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getData } from '../../requests/requests';
 import { ICard } from '../../type';
 import './style.css';

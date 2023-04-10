@@ -1,4 +1,4 @@
-import { graphql, rest } from 'msw';
+import { rest } from 'msw';
 import { ICard } from 'pages/Main/type';
 
 // Mock Data
@@ -47,8 +47,7 @@ export const testsCards: ICard[] = [
     created: '2017-11-04T22:28:13.756Z',
   },
 ];
-//const jsonPlaceHolder = graphql.link('https://jsonplaceholder.ir/graphql');
-// Define handlers that catch the corresponding requests and returns the mock data.
+
 export const handlers = [
   rest.get('https://jsonplaceholder.typicode.com/posts', (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(testsCards));

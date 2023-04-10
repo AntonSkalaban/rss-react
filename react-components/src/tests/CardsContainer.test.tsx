@@ -1,29 +1,32 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, test } from 'vitest';
-import { getData } from 'pages/Main/requests/requests';
 import { CardsContainer } from '../pages/Main/components/CardsContainer/CardsContainer';
 import { Main } from '../pages/Main/Main';
-import { ICard } from '../pages/Main/type';
 import { testsCards } from '../mocks/handlers';
 
-// describe('Main page', () => {
-//   test('RendersCards', async () => {
-//     render(<Main />);
-//     // userEvent.type(screen.getByPlaceholderText('Search here'), 'lkjlkmkm;m;');
-//     // userEvent.keyboard('{Enter}');
+describe('Main page', () => {
+  test('Render Cards', async () => {
+    render(<Main />);
 
-//     fireEvent.input(screen.getByPlaceholderText('Search here'), {
-//       target: {
-//         value: 'lkjlkmkm',
-//       },
-//     });
+    const inputEl = screen.getByPlaceholderText('Search here');
+    await userEvent.type(inputEl, 'Antenna Morty{enter}');
 
-//     await userEvent.keyboard('{Enter}');
-//     expect(await screen.findByText(/An Morty/i)).toBeInTheDocument();
-//   });
-// });
+    expect(inputEl).toBeInTheDocument();
+    expect(inputEl).toHaveValue('Antenna Morty');
+    expect(await screen.findByText(/Antenna Morty/i)).toBeInTheDocument();
+  });
+
+  test('Render Error', async () => {
+    render(<Main />);
+
+    const inputEl = screen.getByPlaceholderText('Search here');
+    await userEvent.type(inputEl, 'ErrorMessage{enter}');
+
+    expect(await screen.findByText(/Not found/i)).toBeInTheDocument();
+  });
+});
 
 describe('CardsContainer', () => {
   test('Renders testCards', async () => {
