@@ -1,0 +1,14 @@
+
+.big-card__infol-block {
+    margin-top: 20px;
+}
+
+.big-card__subtitle {
+    font-size: 22px;
+    color: grey;
+}
+
+.big-card__info {
+    font-size: 26px;
+    color: white;
+}
