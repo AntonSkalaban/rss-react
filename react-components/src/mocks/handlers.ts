@@ -1,7 +1,8 @@
 import { graphql, rest } from 'msw';
+import { ICard } from 'pages/Main/type';
 
 // Mock Data
-export const cards = [
+export const testsCards: ICard[] = [
   {
     id: 18,
     name: 'Antenna Morty',
@@ -50,6 +51,6 @@ export const cards = [
 // Define handlers that catch the corresponding requests and returns the mock data.
 export const handlers = [
   rest.get('https://jsonplaceholder.typicode.com/posts', (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(cards));
+    return res(ctx.status(200), ctx.json(testsCards));
   }),
 ];
