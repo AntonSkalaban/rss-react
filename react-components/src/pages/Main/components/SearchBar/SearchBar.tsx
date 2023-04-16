@@ -1,39 +1,43 @@
 import React, { useEffect, useState } from 'react';
-import { getData } from '../../requests/requests';
-import { ICard } from '../../type';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../../store/index';
+import { changeSearchValue } from '../../../../store/searchBarSlice';
+import { updateCards } from '../../../../store/cardsSlice';
+
 import './style.css';
 
-interface SearchBarProps {
-  handleLoading: (value: boolean) => void;
-  handleError: (value: boolean) => void;
-  updateData: (cards: ICard[]) => void;
-}
+// interface SearchBarProps {
+//   handleLoading: (value: boolean) => void;
+//   handleError: (value: boolean) => void;
+// }
 
-const getValue = () => {
-  const value = localStorage.getItem('value');
-  return value ? value : '';
-};
+export const SearchBar = () => {
+  const dispatch = useDispatch();
+  const updateSearchText = () => dispatch(changeSearchValue(value));
 
-export const SearchBar = ({ handleLoading, handleError, updateData }: SearchBarProps) => {
-  const [value, setValue] = useState(() => getValue());
+  const text = useSelector((state: RootState) => state.searchBarValue.value);
+  const [value, setValue] = useState(text);
 
-  useEffect(() => {
-    (async () => {
-      await handleFetch();
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //const getCards = (cards: ICard[]) => dispatch(updateCards(cards));
 
-  const handleFetch = async () => {
-    handleLoading(true);
-    const cards = await getData(value);
-    handleLoading(false);
-    if (cards) {
-      updateData(cards);
-    } else {
-      handleError(true);
-    }
-  };
+  // useEffect(() => {
+  //   (async () => {
+  //     await fillCardsList();
+  //   })();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
+  // const fillCardsList = async () => {
+  //   try {
+  //     handleLoading(true);
+  //     const cards = await fetchCards(value);
+  //     getCards(cards);
+  //   } catch {
+  //     handleError(true);
+  //   } finally {
+  //     handleLoading(false);
+  //   }
+  // };
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     setValue((e.target as HTMLInputElement)?.value);
@@ -41,11 +45,11 @@ export const SearchBar = ({ handleLoading, handleError, updateData }: SearchBarP
 
   const handleEnterPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key !== 'Enter') return;
-    localStorage.setItem('value', value);
-    handleError(false);
-    (async () => {
-      await handleFetch();
-    })();
+    updateSearchText();
+    // handleError(false);
+    // (async () => {
+    //   await fillCardsList();
+    // })();
   };
 
   return (
