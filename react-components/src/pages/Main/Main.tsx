@@ -1,38 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { SearchBar } from './components/SearchBar/SearchBar';
 import { CardsContainer } from './components/CardsContainer/CardsContainer';
-
 import './Main.css';
 import { cardAPI } from '../../services/CardService';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
-import { IRickAndMortyCard } from 'types';
 import { LoadingSpinner } from './components/LoadingSpinner/LoadingSpinner';
+import { IRickAndMortyCard } from '../../types';
+import { useDispatch, useSelector } from 'react-redux';
 import { saveCards } from '../../store/cardsSlice';
+import { RootState } from '../../store';
 
 export const Main = () => {
   const dispatch = useDispatch();
   const saveLoadedCards = (cards: IRickAndMortyCard[]) => dispatch(saveCards(cards));
-  const savedCards = useSelector((state: RootState) => state.card.cards);
+  //const savedCards = useSelector((state: RootState) => state.card.cards);
+  const searchText = useSelector((state: RootState) => state.searchBarValue.value);
 
-  const [trigger, { data: loadedCards, isFetching, error }] = cardAPI.useLazyGetCadrsByNameQuery();
+  const [trigger, { data: cards, isFetching, error }] = cardAPI.useLazyGetCadrsByNameQuery();
 
-  const [cards, setCards] = useState(savedCards as IRickAndMortyCard[]);
-  const [isFirstVisit, setIsFirstVisit] = useState(true);
-
-  const getCards = (value: string) => {
+  const getCards = useCallback((value: string) => {
     trigger(value, false);
-
-    // setCards(loadedCards || []);
-    saveLoadedCards(loadedCards || ([] as IRickAndMortyCard[]));
-  };
+    console.log(cards);
+    if (cards) saveLoadedCards(cards);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
-    if (isFirstVisit) {
-      setIsFirstVisit(false);
-      getCards('');
-    }
-    console.log(savedCards, error, isFetching);
+    getCards(searchText);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

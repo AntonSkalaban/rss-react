@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { IRickAndMortyCard } from '../types';
 
 const cardSlice = createSlice({
@@ -9,6 +9,7 @@ const cardSlice = createSlice({
   reducers: {
     saveCards(state, action) {
       state.cards = action.payload;
+      console.log(action.payload);
     },
   },
 });

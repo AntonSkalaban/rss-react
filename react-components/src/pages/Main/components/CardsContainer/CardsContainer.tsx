@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { SmallCard } from '../SmallCard/SmallCard';
 import { PortalModal } from '../PortalModal';
-import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner';
-
-import './style.css';
-
-import { cardAPI } from '../../../../services/CardService';
 import { IRickAndMortyCard } from 'types';
-import { useDispatch, useSelector } from 'react-redux';
+import './style.css';
 
 interface CardsContainerProps {
   cards: IRickAndMortyCard[];
