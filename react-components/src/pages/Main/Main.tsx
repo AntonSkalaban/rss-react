@@ -1,37 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SearchBar } from './components/SearchBar/SearchBar';
 import { CardsContainer } from './components/CardsContainer/CardsContainer';
 
 import './Main.css';
-// import { updateCards } from '../../store/mainSlice';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { RootState } from '../../store/index';
+import { cardAPI } from '../../services/CardService';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store';
+import { IRickAndMortyCard } from 'types';
+import { LoadingSpinner } from './components/LoadingSpinner/LoadingSpinner';
+import { saveCards } from '../../store/cardsSlice';
 
 export const Main = () => {
-  // const [cards, setCards] = useState<ICard[]>([] as ICard[]);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState(false);
+  const dispatch = useDispatch();
+  const saveLoadedCards = (cards: IRickAndMortyCard[]) => dispatch(saveCards(cards));
+  const savedCards = useSelector((state: RootState) => state.card.cards);
 
-  // const dispatch = useDispatch();
+  const [trigger, { data: loadedCards, isFetching, error }] = cardAPI.useLazyGetCadrsByNameQuery();
 
-  // const cards = useSelector((state: RootState) => state.cards.cards);
-  // const getCards = () => dispatch(updateCards(cards));
-  // const updateCards = (cards: ICard[]) => {
-  //   setCards(cards);
-  // };
+  const [cards, setCards] = useState(savedCards as IRickAndMortyCard[]);
+  const [isFirstVisit, setIsFirstVisit] = useState(true);
 
-  // const handleLoading = (value: boolean) => {
-  //   setIsLoading(value);
-  // };
+  const getCards = (value: string) => {
+    trigger(value, false);
 
-  // const handleError = (value: boolean) => {
-  //   setError(value);
-  // };
+    // setCards(loadedCards || []);
+    saveLoadedCards(loadedCards || ([] as IRickAndMortyCard[]));
+  };
+
+  useEffect(() => {
+    if (isFirstVisit) {
+      setIsFirstVisit(false);
+      getCards('');
+    }
+    console.log(savedCards, error, isFetching);
+  }, []);
 
   return (
     <div className="main-page">
-      <SearchBar />
-      <CardsContainer />
+      <SearchBar getData={getCards} />
+      {isFetching && <LoadingSpinner />}
+      {error && <p>Not found:(</p>}
+      {!error && !isFetching && cards && <CardsContainer cards={cards} />}
     </div>
   );
 };

@@ -8,28 +8,14 @@ import './style.css';
 import { cardAPI } from '../../../../services/CardService';
 import { IRickAndMortyCard } from 'types';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
 
-// interface CardsContainerProps {
-//   isLoading: boolean;
-//   error: boolean;
-// }
+interface CardsContainerProps {
+  cards: IRickAndMortyCard[];
+}
 
-export const CardsContainer = () => {
+export const CardsContainer = ({ cards }: CardsContainerProps) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [card, setCard] = useState({} as IRickAndMortyCard);
-
-  //const dispatch = useDispatch();
-  //const cards = useSelector((state: RootState) => state.cards.cards);
-
-  const searchBarValue = useSelector((state: RootState) => state.searchBarValue.value);
-
-  const { data, error, isLoading } = cardAPI.useGetCadrsByNameQuery(searchBarValue);
-  const cards = data?.results;
-  console.log(searchBarValue, data);
-  // useEffect(() => {
-  //   dispatch(fetchCards());
-  // });
 
   const openModal = (card: IRickAndMortyCard) => {
     setModalOpen(true);
@@ -43,12 +29,9 @@ export const CardsContainer = () => {
   return (
     <>
       <div className="cards-container">
-        {isLoading && <LoadingSpinner />}
-        {error && <p>Not found:(</p>}
-        {cards &&
-          (cards as unknown as IRickAndMortyCard[]).map((card) => {
-            return <SmallCard key={card.id} card={card} onClick={openModal} />;
-          })}
+        {cards.map((card) => {
+          return <SmallCard key={card.id} card={card} onClick={openModal} />;
+        })}
       </div>
       <div>
         <PortalModal card={card} isOpen={isModalOpen} closeModal={closeModal} />

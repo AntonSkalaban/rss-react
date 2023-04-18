@@ -7,23 +7,11 @@ const cardSlice = createSlice({
     cards: [] as IRickAndMortyCard[],
   },
   reducers: {
-    updateCards(state, action) {
+    saveCards(state, action) {
       state.cards = action.payload;
     },
-    // cardsFetching(state) {
-    //   state.isLoading = true;
-    // },
-    // cardsFetchingSuccess(state, action) {
-    //   state.isLoading = false;
-    //   state.error = '';
-    //   state.cards = action.payload;
-    // },
-    // cardsFetchingErrore(state, action: PayloadAction<string>) {
-    //   state.isLoading = false;
-    //   state.error = action.payload;
-    // },
   },
 });
 
-export const { updateCards } = cardSlice.actions;
+export const { saveCards } = cardSlice.actions;
 export const cardReducer = cardSlice.reducer;

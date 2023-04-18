@@ -1,18 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { IFormCard } from '../types';
 
 const formSlice = createSlice({
   name: 'form',
   initialState: {
-    form: [{ name: '', country: '', date: '', image: '', benefits: [], notification: '' }],
+    formCards: [] as IFormCard[],
   },
   reducers: {
-    updateForm(state, action) {
-      console.log(action.payload);
-      //state.form = action.payload;
-      return;
+    addFormCard(state, action) {
+      state.formCards = [...state.formCards, action.payload];
     },
   },
 });
 
-export const { updateForm } = formSlice.actions;
+export const { addFormCard } = formSlice.actions;
 export const formReducer = formSlice.reducer;

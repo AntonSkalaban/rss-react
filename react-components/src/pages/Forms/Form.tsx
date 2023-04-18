@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { ICard } from './Card/types';
+import React, { useEffect } from 'react';
 import { TextInput } from './FormComponents/TextInput';
 import { DateInput } from './FormComponents/DateInput';
 import { Select } from './FormComponents/Select';
@@ -12,11 +11,9 @@ import './Form.css';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { updateForm } from '../../store/formSlice';
+import { addFormCard } from '../../store/formSlice';
+import { IFormCard } from '../../types';
 
-export interface FormProps {
-  onSubmit: (card: ICard) => void;
-}
 export interface IFormValues {
   Name: string;
   Date: string;
@@ -27,10 +24,10 @@ export interface IFormValues {
   Data: string;
 }
 
-export const Form = (props: FormProps) => {
+export const Form = () => {
   const dispatch = useDispatch();
+  const saveCard = (card: IFormCard) => dispatch(addFormCard(card));
 
-  const updateFormValue = (card: ICard) => dispatch(updateForm(card));
   const {
     register,
     handleSubmit,
@@ -54,9 +51,7 @@ export const Form = (props: FormProps) => {
     const notifications = data.Radio;
 
     const card = { name, country, date, image, benefits, notifications };
-    props.onSubmit(card as ICard);
-
-    updateFormValue(card);
+    saveCard(card);
     alert('Succsess!');
   };
 

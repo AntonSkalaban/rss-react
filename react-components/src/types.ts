@@ -17,3 +17,12 @@ export interface IRickAndMortyResponse {
   innfo: { count: number; pages: number; next: string; prev: null };
   results: IRickAndMortyResponse[];
 }
+
+export interface IFormCard {
+  name: string;
+  country: string;
+  date: string;
+  image: string;
+  benefits: string[];
+  notifications: string;
+}

@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import { Card } from './Card/Card';
 import { Form } from './Form';
-import { ICard } from './Card/types';
+import { IFormCard } from '../../types';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 export const Forms = () => {
-  const [cards, setCards] = useState([] as ICard[]);
-
-  const addCard = (card: ICard) => {
-    setCards([...cards, card]);
-  };
+  const savedFormsCards = useSelector((state: RootState) => state.form.formCards);
 
   return (
     <>
       <h2>Forms</h2>
-      <Form onSubmit={addCard} />
+      <Form />
       <div style={{ display: 'flex' }}>
-        {cards.map((card, index) => {
+        {savedFormsCards.map((card, index) => {
           return (
             <Card
               key={index}
