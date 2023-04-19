@@ -12,6 +12,7 @@ import './Main.css';
 export const Main = () => {
   const dispatch = useDispatch();
   const saveLoadedCards = (cards: IRickAndMortyCard[]) => dispatch(saveCards(cards));
+
   const savedCards = useSelector((state: RootState) => state.card.cards);
 
   const [trigger, { data: cards, isFetching, error }] = cardAPI.useLazyGetCadrsByNameQuery();
@@ -20,6 +21,7 @@ export const Main = () => {
 
   const getCards = useCallback((value: string) => {
     trigger(value, false);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
