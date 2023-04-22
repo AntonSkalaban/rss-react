@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { СharacterCard } from '../../components/СharacterCard/CharcaterCard';
+import { СharacterCard } from '../CharacterCard/CharcaterCard';
 import { PortalModal } from '../../components/PortalModal/PortalModal';
 import { CharacterInfoCard } from '../../components/CharacterInfoCard/CharacterInfoCard';
 import { ICharcater } from 'types';

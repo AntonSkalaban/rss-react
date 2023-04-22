@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormCard } from '../../components/FormCard/FormCard';
 import { IFormCard } from 'types';
-import './style';
+import './style.css';
 
 interface FormCardsContainerProps {
   cards: IFormCard[];

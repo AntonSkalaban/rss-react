@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import './style.css';
 interface PortalModalProps {
   child: JSX.Element;
   isOpen: boolean;
@@ -18,7 +18,6 @@ export const PortalModal = ({ child, isOpen, closeModal }: PortalModalProps) => 
         {child}
       </div>
     </div>,
-
     document.body
   );
 };

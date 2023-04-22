@@ -15,11 +15,10 @@
   }
 
   .modal {
-    width: 70%;
+    width: 65%;
     height: 50%;
   
     position: relative;
-    display: flex;
   
     background-color: rgb(47, 44, 44);
     border-radius: 15px;
