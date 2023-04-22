@@ -1,4 +1,4 @@
-export interface IRickAndMortyCard {
+export interface ICharcater {
   id: number;
   name: string;
   species: string;
@@ -13,9 +13,9 @@ export interface IRickAndMortyCard {
   created: string;
 }
 
-export interface IRickAndMortyResponse {
+export interface ICharcaterResponse {
   innfo: { count: number; pages: number; next: string; prev: null };
-  results: IRickAndMortyResponse[];
+  results: ICharcater[];
 }
 
 export interface IFormCard {

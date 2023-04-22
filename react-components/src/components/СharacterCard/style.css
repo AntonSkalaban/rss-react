@@ -1,16 +1,16 @@
-.small-card{
+.charcater-card{
     width: 300px;
     margin: 20px;
 
     position: relative;
 }
 
-.small-card__image {
+.charcater-card__image {
     width: 100%;
     height: 300px;
 }
 
-.small-card__name {
+.charcater-card__name {
    position: absolute;
    bottom: 7%;
    background-color: aquamarine;

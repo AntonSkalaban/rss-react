@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card } from './Card/Card';
-import { Form } from './Form';
 import { useSelector } from 'react-redux';
+import { Form } from '../../components/Form/Form';
+import { FormCardsContainer } from '../../components/FormCardsContainer/FormCardsContainer';
 import { RootState } from '../../store';
 
 export const Forms = () => {
@@ -11,21 +11,7 @@ export const Forms = () => {
     <>
       <h2>Forms</h2>
       <Form />
-      <div style={{ display: 'flex' }}>
-        {savedFormsCards.map((card, index) => {
-          return (
-            <Card
-              key={index}
-              name={card.name}
-              country={card.country}
-              date={card.date}
-              image={card.image}
-              benefits={card.benefits}
-              notifications={card.notifications}
-            />
-          );
-        })}
-      </div>
+      <FormCardsContainer cards={savedFormsCards} />
     </>
   );
 };

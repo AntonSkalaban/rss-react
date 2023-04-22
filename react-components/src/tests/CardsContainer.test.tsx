@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, test } from 'vitest';
-import { CardsContainer } from '../pages/Main/components/CardsContainer/CardsContainer';
+import { MainCardsContainer } from '../components/MainCardsContainer/MainCardsContainer';
 import { Main } from '../pages/Main/Main';
 import { testsCards } from '../mocks/handlers';
 
@@ -30,7 +30,7 @@ describe('Main page', () => {
 
 describe('CardsContainer', () => {
   test('Renders testCards', async () => {
-    render(<CardsContainer cards={testsCards} isLoading={false} error={false} />);
+    render(<MainCardsContainer cards={testsCards} />);
     const cards = screen.getAllByRole('small-card');
     expect(cards.length).toBe(2);
   });

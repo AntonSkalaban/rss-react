@@ -6,13 +6,12 @@ import { FileInput } from './FormComponents/FileInput';
 import { Checkbox } from './FormComponents/Checkbox';
 import { Radio } from './FormComponents/Radio';
 import { SubmitBtn } from './FormComponents/SubmitBtn';
-import { benefitsCheckboxes, notificationsRadio } from './formData';
-import './Form.css';
-
+import { benefitsCheckboxes, notificationsRadio } from './const';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { addFormCard } from '../../store/formSlice';
 import { IFormCard } from '../../types';
+import './style.css';
 
 export interface IFormValues {
   Name: string;

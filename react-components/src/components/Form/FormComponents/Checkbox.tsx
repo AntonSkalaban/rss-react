@@ -15,7 +15,9 @@ export const Checkbox = ({ name, value, label, register }: CheckboxProps) => {
       <input
         type="checkbox"
         value={value}
-        {...register(name, { required: 'Benefits is required' })}
+        {...register(name, {
+          required: name === 'Benefits' ? 'Benefits is required' : 'Data is required',
+        })}
       />
       {label}
     </label>
