@@ -4,18 +4,6 @@ import { cardReducer } from './cardsSlice';
 import { searchBarReducer } from './searchBarSlice';
 import { formReducer } from './formSlice';
 
-// const rootReducer = combineReducers({
-//   searchBarValue: searchBarReducer,
-//   cardReducer,
-//   [cardAPI.reducerPath]: cardAPI.reducer,
-// })
-
-// export const setUpStore = () => {
-//   return configureStore({
-//     reducer: rootReducer,
-//     middleware: (getDefaultMiddleware)
-//   })
-// }
 export const store = configureStore({
   reducer: {
     searchBarValue: searchBarReducer,

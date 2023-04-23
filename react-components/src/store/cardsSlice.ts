@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IRickAndMortyCard } from '../types';
+import { ICharcater } from '../types';
 
 const cardSlice = createSlice({
   name: 'card',
   initialState: {
-    cards: [] as IRickAndMortyCard[],
+    cards: [] as ICharcater[],
   },
   reducers: {
     saveCards(state, action) {
