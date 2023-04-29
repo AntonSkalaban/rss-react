@@ -1,0 +1,14 @@
+
+.character-info__block {
+    margin-top: 20px;
+}
+
+.character-info__subtitle {
+    font-size: 22px;
+    color: grey;
+}
+
+.character-info__info {
+    font-size: 26px;
+    color: white;
+}
