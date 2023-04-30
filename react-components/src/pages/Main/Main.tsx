@@ -10,17 +10,22 @@ import { ICharcater } from '../../types';
 import './Main.css';
 
 export const Main = () => {
-  const dispatch = useDispatch();
-  const saveLoadedCards = (cards: ICharcater[]) => dispatch(saveCards(cards));
-  const savedCards = useSelector((state: RootState) => state.card.cards);
-
   const [trigger, { data: loadedCards, isFetching, error }] = cardAPI.useLazyGetCadrsByNameQuery();
+  const dispatch = useDispatch();
+  const savedCards = useSelector((state: RootState) => state.card.cards);
   const [cards, setCards] = useState([] as ICharcater[]);
 
-  const getCards = useCallback((value: string) => {
-    trigger(value, false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const getCards = useCallback(
+    (value: string) => {
+      trigger(value, false);
+    },
+    [trigger]
+  );
+
+  const saveLoadedCards = useCallback(
+    (cards: ICharcater[]) => dispatch(saveCards(cards)),
+    [dispatch]
+  );
 
   useEffect(() => {
     if (!savedCards.length) {
@@ -36,8 +41,7 @@ export const Main = () => {
       setCards(loadedCards);
       saveLoadedCards(loadedCards);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadedCards]);
+  }, [loadedCards, saveLoadedCards]);
 
   return (
     <div className="main-page">
