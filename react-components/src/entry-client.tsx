@@ -1,16 +1,16 @@
 import React from 'react';
-import { HydrationOptions, hydrateRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { store } from './store/index';
+import { Provider } from 'react-redux';
 import App from './App';
+import './index.css';
 
-const root = document.getElementById('app');
-if (root) {
-  hydrateRoot(
-    root,
-    <App />
-    // <BrowserRouter>
-    //   <App />
-    // </BrowserRouter>,
-    // root as HydrationOptions
-  );
-}
+ReactDOM.hydrateRoot(
+  document.getElementById('root') as HTMLElement,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
+);
